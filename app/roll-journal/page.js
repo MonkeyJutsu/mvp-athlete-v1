@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function RollJournal() {
   const [rolls, setRolls] = useState([]);
@@ -8,7 +9,7 @@ export default function RollJournal() {
   const [focus, setFocus] = useState("");
   const [notes, setNotes] = useState("");
 
-  // Load saved rolls on first render
+  // Load saved rolls
   useEffect(() => {
     const saved = localStorage.getItem("rollJournal");
     if (saved) {
@@ -16,7 +17,7 @@ export default function RollJournal() {
     }
   }, []);
 
-  // Save rolls whenever they change
+  // Save rolls
   useEffect(() => {
     localStorage.setItem("rollJournal", JSON.stringify(rolls));
   }, [rolls]);
@@ -38,18 +39,18 @@ export default function RollJournal() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      {/* ✅ Navbar at top */}
-      <nav className="bg-gray-900 text-slate-700 p-4 flex gap-4 mb-6">
-        <a href="/" className="hover:underline">Daily Log</a>
-        <a href="/roll-journal" className="hover:underline">Roll Journal</a>
+    <div className="min-h-screen bg-gray-100 p-6 text-slate-700">
+      {/* Navbar */}
+      <nav className="bg-gray-900 text-white p-4 flex gap-4 mb-6 rounded-lg">
+        <Link href="/" className="hover:underline">Daily Log</Link>
+        <Link href="/roll-journal" className="hover:underline">Roll Journal</Link>
       </nav>
 
       <h1 className="text-3xl font-bold mb-4 text-center text-green-600">
         MVP Athlete V1 - Roll Journal
       </h1>
 
-      {/* Input Form */}
+      {/* Input form */}
       <div className="bg-white shadow-md rounded-lg p-4 max-w-md mx-auto mb-6">
         <input
           className="border p-2 w-full mb-2 text-slate-700"
@@ -84,13 +85,13 @@ export default function RollJournal() {
         </button>
       </div>
 
-      {/* Saved Rolls */}
+      {/* Rolls list */}
       <div className="max-w-md mx-auto">
-        <h2 className="text-xl font-bold mb-2 text-slate-900">Previous Rolls</h2>
-        {rolls.length === 0 && <p className="text-gray-500">No rolls yet.</p>}
+        <h2 className="text-xl font-bold mb-2">Previous Rolls</h2>
+        {rolls.length === 0 && <p className="text-slate-500">No rolls yet.</p>}
         <ul>
           {rolls.map((roll, i) => (
-            <li key={i} className="bg-white p-3 rounded-lg shadow mb-2 text-slate-900">
+            <li key={i} className="bg-white p-3 rounded-lg shadow mb-2">
               <p><b>Date:</b> {roll.date}</p>
               <p><b>Partner:</b> {roll.partner}</p>
               <p><b>Duration:</b> {roll.duration} min</p>

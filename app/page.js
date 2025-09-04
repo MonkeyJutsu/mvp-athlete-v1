@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   LineChart,
   Line,
@@ -133,8 +134,8 @@ export default function DailyLog() {
     <div className="min-h-screen bg-gray-100 p-6 text-slate-700">
       {/* Navbar */}
       <nav className="bg-gray-900 text-white p-4 flex gap-4 mb-6 rounded-lg">
-        <a href="/" className="hover:underline">Daily Log</a>
-        <a href="/roll-journal" className="hover:underline">Roll Journal</a>
+        <Link href="/" className="hover:underline">Daily Log</Link>
+        <Link href="/roll-journal" className="hover:underline">Roll Journal</Link>
       </nav>
 
       <h1 className="text-3xl font-bold mb-6 text-center text-sky-500">
@@ -281,7 +282,7 @@ export default function DailyLog() {
         {/* ✅ Daily Totals Bar */}
         {todayFoods.length > 0 && (
           <div className="mt-6 bg-blue-50 border border-blue-200 p-3 rounded-lg">
-            <h3 className="font-semibold mb-2 text-blue-700">Today's Totals</h3>
+            <h3 className="font-semibold mb-2 text-blue-700">Today&apos;s Totals</h3>
             <p>
               <b>Calories:</b> {totals.calories.toFixed(1)} kcal ·{" "}
               <b>Protein:</b> {totals.protein.toFixed(1)} g ·{" "}
